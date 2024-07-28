@@ -1,0 +1,17 @@
+doctype html
+html
+  head
+    title Tạo Thể loại Mới
+  body
+    include ../common/header
+    if (user && user.is_admin)
+      h1 Tạo Thể loại Mới
+      form(action='/categories/create', method='POST')
+        div
+          label(for='name') Tên Thể loại:
+          input(type='text', id='name', name='name', required=true)
+        div
+          button(type='submit') Tạo Mới
+    else
+      p Bạn không có quyền tạo thể loại mới
+    a(href='/categories') Quay lại danh sách thể loại

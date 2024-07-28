@@ -1,0 +1,32 @@
+doctype html
+html
+  head
+    title Danh Sách Thể Loại
+    script.
+      function confirmDelete(categoryId) {
+        if (window.confirm('Bạn có chắc chắn muốn xóa thể loại này?')) {
+          fetch(`/categories/delete/${categoryId}`, { method: 'DELETE' })
+            .then(response => {
+              if (response.ok) {
+                window.location.reload();
+              } else {
+                alert('Xóa không thành công');
+              }
+            });
+        }
+      }
+  body
+    include ../common/header
+    h1 Danh sách thể loại
+    if user && user.is_admin
+      a(href='/categories/create') Tạo Thể Loại Mới
+    ul
+      each category in categories
+        li
+          a(href=`categories/category/${category.id}`) #{category.name}
+          if user && user.is_admin
+            span - 
+            a(href=`/categories/edit/${category.id}`) Chỉnh Sửa
+            span -
+            a(href='#', onclick=`confirmDelete(${category.id})`) Xóa
+    

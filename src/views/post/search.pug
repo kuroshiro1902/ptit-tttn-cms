@@ -1,0 +1,15 @@
+doctype html
+html
+  head
+    title Kết quả tìm kiếm bài viết
+  body
+    include ../common/header
+    h1 Kết quả tìm kiếm
+    if posts.length
+      ul
+        each post in posts
+          li
+            a(href=`/posts/detail/${post.id}`) #{post.title}
+    else
+      p Không tìm thấy bài viết nào.
+    a(href="/posts") Quay lại danh sách bài viết

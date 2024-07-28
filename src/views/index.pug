@@ -1,0 +1,21 @@
+doctype html
+html
+  head
+    title Danh sách bài viết
+  body
+    include ./common/header
+    h1 Danh sách bài viết
+    if (user && user.is_admin)
+      a(href="/posts/create") Tạo bài viết mới
+    ul
+      each post in posts
+        li
+          a(href=`/posts/detail/${post.id}`) #{post.title}
+
+    h1 Danh sách thể loại
+    if (user && user.is_admin)
+      a(href="/categories/create") Tạo thể loại mới
+    ul
+      each category in categories
+        li
+          a(href=`/categories/category/${category.id}`) #{category.name}

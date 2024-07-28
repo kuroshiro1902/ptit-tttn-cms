@@ -1,0 +1,17 @@
+doctype html
+html
+  head
+    title Chỉnh Sửa Thể Loại
+  body
+    include ../common/header
+    h1 Chỉnh Sửa Thể Loại
+    if (user && user.is_admin)
+      form(action=`/categories/update/${category.id}`, method='POST')
+        div
+          label(for='name') Tên Thể Loại:
+          input(type='text', id='name', name='name', value=category.name, required)
+        div
+          button(type='submit') Cập Nhật
+    else
+      p Bạn không có quyền chỉnh sửa thể loại
+    a(href='/categories') Quay lại danh sách thể loại

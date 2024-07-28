@@ -1,0 +1,23 @@
+doctype html
+html
+  head
+    title Đăng Nhập
+  body
+    include ../common/header
+    if user
+      p Bạn đã đăng nhập.
+      a(href='/') Quay về trang chủ
+    else
+      h1 Đăng Nhập
+      form(action='/auth/login', method='POST')
+        div
+          label(for='username') Tên đăng nhập:
+          input(type='text', id='username', name='username', required)
+        div
+          label(for='password') Mật khẩu:
+          input(type='password', id='password', name='password', required)
+        div
+          button(type='submit') Đăng Nhập
+      a(href='/auth/signup') Chưa có tài khoản? Đăng ký
+      if error
+        p.error #{error}

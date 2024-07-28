@@ -1,0 +1,23 @@
+doctype html
+html
+  head
+    title Đăng Ký
+  body
+    include ../common/header
+    h1 Đăng Ký
+    form(action='/auth/signup', method='POST')
+      div
+        label(for='name') Tên:
+        input(type='text', id='name', name='name', required)
+      div
+        label(for='username') Tên đăng nhập:
+        input(type='text', id='username', name='username', required)
+      div
+        label(for='password') Mật khẩu:
+        input(type='password', id='password', name='password', required)
+      div
+        label(for='email') Email:
+        input(type='email', id='email', name='email')
+      div
+        button(type='submit') Đăng Ký
+    a(href='/auth/login') Đã có tài khoản? Đăng nhập

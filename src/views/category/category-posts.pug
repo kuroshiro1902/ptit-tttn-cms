@@ -1,0 +1,15 @@
+doctype html
+html
+  head
+    title Bài viết thuộc thể loại #{category.name}
+  body
+    include ../common/header
+    h1 Bài viết thuộc thể loại #{category.name}
+    if posts.length
+      ul
+        each post in posts
+          li
+            a(href=`/posts/detail/${post.id}`) #{post.title} - #{new Date(post.createdAt).toLocaleString('vi-VN', { hour: '2-digit', minute: '2-digit', day: '2-digit', month: '2-digit', year: 'numeric' })}
+    else
+      p Không có bài viết nào thuộc thể loại này.
+    a(href="/categories") Quay lại danh sách thể loại

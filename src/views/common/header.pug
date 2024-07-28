@@ -1,0 +1,20 @@
+header
+  link(rel='stylesheet', type='text/css', href='/style.css')
+  if user
+    p Xin chào, #{user.name}
+      span -
+      a(href='/auth/logout') Đăng xuất
+  else
+    p
+      a(href='/auth/login') Đăng nhập
+      span      
+      a(href='/auth/signup') Đăng ký
+  p
+    a(href='/') Trang chủ
+    span - 
+    a(href='/posts') Danh sách bài viết
+    span - 
+    a(href='/categories') Danh sách thể loại
+  form(action="/posts/search" method="get")
+      input(type="text" name="q" placeholder="Tìm kiếm bài viết..." required="true")
+      button(type="submit") Tìm kiếm

@@ -1,0 +1,39 @@
+doctype html
+html
+  head
+    title Tạo bài viết mới
+  body
+    include ../common/header
+    if (user && user.is_admin)
+      h1 Tạo bài viết mới
+      form(action="/posts/create" method="POST" id="createPostForm")
+        div
+          label(for="title") Tiêu đề:
+          input(type="text" name="title" required)
+        div
+          label(for="contentHTML") Nội dung:
+          div(spellcheck="false" name="contentHTML" id="contentHTML" contenteditable="true" style="border: 1px solid #ccc; padding: 10px; min-height: 100px;")
+        div
+          label(for="category_id") Thể loại:
+          select(name="category_id" required)
+            option(value="" disabled selected Chọn Thể loại)
+            each category in categories
+              option(value=category.id) #{category.name}
+        input(type="hidden" name="content" id="content" required)
+        div
+          button(type="submit") Tạo
+      script.
+        document.getElementById('createPostForm').addEventListener('submit', function(event) {
+          // Ngăn submit mặc định
+          event.preventDefault();
+
+          // Lấy nội dung HTML từ div contenteditable và đặt vào input ẩn
+          var contentHtml = document.getElementById('contentHTML').innerHTML;
+          document.getElementById('content').value = contentHtml;
+
+          // Submit biểu mẫu sau khi đã cập nhật input ẩn
+          this.submit();
+        });
+    else
+      p Bạn không có quyền tạo mới bài viết.
+    a(href="/posts") Quay lại danh sách bài viết
